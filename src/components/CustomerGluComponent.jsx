@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect,useState, useRef } from "react";
 import PropTypes from "prop-types";
 
-const CustomerGluComponent = ({ writeKey, userId, func }) => {
+const CustomerGluComponent = ({ writeKey, userId }) => {
+  const [loading, setLoading] = useState(true);
   const scriptLoadedRef = useRef(false);
 
   useEffect(() => {
@@ -15,9 +16,7 @@ const CustomerGluComponent = ({ writeKey, userId, func }) => {
         scriptLoadedRef.current = true;
         if (window.CustomerGlu) {
           new window.CustomerGlu(writeKey, { userId }, {});
-          if (typeof func === "function") {
-            func(false);
-          }
+          setLoading(false);
           console.log("CustomerGlu initialized");
         } else {
           console.error("CustomerGlu is not available");
@@ -43,17 +42,20 @@ const CustomerGluComponent = ({ writeKey, userId, func }) => {
         console.error("CustomerGlu is not available");
       }
     }
-  }, [writeKey, userId, func]);
+  }, [writeKey, userId]);
 
   return (
-    <></>
+    loading ? (
+      <h1>Loading CustomerGlu...</h1>
+    ) : (
+      <></>
+    )
   );
 };
 
 CustomerGluComponent.propTypes = {
   writeKey: PropTypes.string.isRequired,
   userId: PropTypes.string,
-  func: PropTypes.func.isRequired,  
 };
 
 CustomerGluComponent.defaultProps = {
