@@ -1,7 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 
 const CustomerGluComponent = ({ writeKey, userId }) => {
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptError, setScriptError] = useState(false);
+
   useEffect(() => {
     const initializeCustomerGlu = () => {
       if (window.CustomerGlu) {
@@ -12,47 +16,31 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
       }
     };
 
-    const existingScript = document.querySelector(`script[src="https://assets.customerglu.com/scripts/sdk/v5.0/sdk.js"]`);
-
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.src = "http://127.0.0.1:8080/sdk.js";
-      script.async = true;
-
-      script.onload = () => {
-        console.log("Script loaded successfully");
-        initializeCustomerGlu();
-      };
-
-      script.onerror = (error) => {
-        console.error("Error loading script:", error);
-      };
-
-      document.body.appendChild(script);
-
-      return () => {
-        document.body.removeChild(script);
-      };
-    } else {
-      // If the script already exists, just initialize the SDK
+    if (scriptLoaded) {
       initializeCustomerGlu();
     }
-  }, [writeKey, userId]);
+  }, [scriptLoaded, writeKey, userId]);
 
-  // Reload logic
-  useEffect(() => {
-    const reloadKey = 'customerGluReload';
-    const shouldReload = localStorage.getItem(reloadKey);
-
-    if (!shouldReload) {
-      localStorage.setItem(reloadKey, 'true');
-      window.location.reload();
-    } else {
-      localStorage.removeItem(reloadKey);
-    }
-  }, []);
-
-  return <div id="embedId"></div>;
+  return (
+    <>
+      <Helmet>
+        <script
+          src="http://127.0.0.1:8080/sdk.js"
+          async
+          onLoad={() => {
+            console.log("Script loaded successfully");
+            setScriptLoaded(true);
+          }}
+          onError={(error) => {
+            console.error("Error loading script:", error);
+            setScriptError(true);
+          }}
+        />
+      </Helmet>
+      <div id="embedId"></div>
+      {scriptError && <p>Error loading the CustomerGlu SDK script.</p>}
+    </>
+  );
 };
 
 CustomerGluComponent.propTypes = {
