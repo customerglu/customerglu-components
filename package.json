@@ -1,6 +1,6 @@
 {
   "name": "@customerglu/react-web-sdk",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "type": "module",
   "main": "dist/customerglu-components.cjs.js",
   "module": "dist/customerglu-components.es.js",
@@ -14,9 +14,6 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:customerglu/customerglu-components.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
     "@dotlottie/react-player": "^1.6.19",
