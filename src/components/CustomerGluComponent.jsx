@@ -17,11 +17,11 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
       script.onload = () => {
         console.log("Script loaded successfully");
         scriptLoadedRef.current = true;
-        setIsLoading(false);
 
         if (window.CustomerGlu) {
           new window.CustomerGlu(writeKey, { userId }, {});
           console.log("CustomerGlu initialized");
+          setIsLoading(false);
         } else {
           console.error("CustomerGlu is not available");
         }
@@ -42,6 +42,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
       if (window.CustomerGlu) {
         new window.CustomerGlu(writeKey, { userId }, {});
         console.log("CustomerGlu initialized");
+        setIsLoading(false);
       } else {
         console.error("CustomerGlu is not available");
       }
