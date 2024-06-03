@@ -39,7 +39,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
     }
   }, [writeKey, userId]);
 
-  return <div id="embedId"></div>;
+  return <></>;
 };
 
 CustomerGluComponent.propTypes = {
