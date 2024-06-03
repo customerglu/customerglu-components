@@ -1,29 +1,45 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 const CustomerGluComponent = ({ writeKey, userId }) => {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://assets.customerglu.com/scripts/sdk/v5.0/sdk.js";
-    script.async = true;
+  const scriptLoadedRef = useRef(false);
 
-    script.onload = () => {
-      console.log("Script loaded successfully");
+  useEffect(() => {
+    if (!scriptLoadedRef.current) {
+      const script = document.createElement("script");
+      script.src = "https://assets.customerglu.com/scripts/sdk/v5.0/sdk.js";
+      script.async = true;
+
+      script.onload = () => {
+        console.log("Script loaded successfully");
+        scriptLoadedRef.current = true;
+        if (window.CustomerGlu) {
+          new window.CustomerGlu(writeKey, { userId }, {});
+          console.log("CustomerGlu initialized");
+        } else {
+          console.error("CustomerGlu is not available");
+        }
+      };
+
+      script.onerror = (error) => {
+        console.error("Error loading script:", error);
+      };
+
+      document.body.appendChild(script);
+
+      return () => {
+        document.body.removeChild(script);
+        scriptLoadedRef.current = false;
+      };
+    } else {
+      // If script is already loaded, initialize the SDK directly
       if (window.CustomerGlu) {
         new window.CustomerGlu(writeKey, { userId }, {});
         console.log("CustomerGlu initialized");
       } else {
         console.error("CustomerGlu is not available");
       }
-    };
-    script.onerror = (error) => {
-      console.error("Error loading script:", error);
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
+    }
   }, [writeKey, userId]);
 
   return (
