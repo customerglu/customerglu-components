@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
-const CustomerGluComponent = ({ writeKey, userId }) => {
+const CustomerGluComponent = ({ writeKey, userId, func }) => {
   const scriptLoadedRef = useRef(false);
 
   useEffect(() => {
@@ -15,6 +15,9 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
         scriptLoadedRef.current = true;
         if (window.CustomerGlu) {
           new window.CustomerGlu(writeKey, { userId }, {});
+          if (typeof func === "function") {
+            func(false);
+          }
           console.log("CustomerGlu initialized");
         } else {
           console.error("CustomerGlu is not available");
@@ -40,7 +43,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
         console.error("CustomerGlu is not available");
       }
     }
-  }, [writeKey, userId]);
+  }, [writeKey, userId, func]);
 
   return (
     <></>
@@ -50,6 +53,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
 CustomerGluComponent.propTypes = {
   writeKey: PropTypes.string.isRequired,
   userId: PropTypes.string,
+  func: PropTypes.func.isRequired,  
 };
 
 CustomerGluComponent.defaultProps = {
