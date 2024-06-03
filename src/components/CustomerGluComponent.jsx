@@ -17,7 +17,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
       script.onload = () => {
         console.log("Script loaded successfully");
         scriptLoadedRef.current = true;
-        setTimeout(() => setIsLoading(false), 10000);
+        setIsLoading(false);
 
         if (window.CustomerGlu) {
           new window.CustomerGlu(writeKey, { userId }, {});
