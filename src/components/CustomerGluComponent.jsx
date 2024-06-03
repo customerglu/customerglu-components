@@ -46,7 +46,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
       if (window.CustomerGlu) {
         new window.CustomerGlu(writeKey, { userId }, {});
         console.log("CustomerGlu initialized");
-        setIsLoading(false);
+        // setIsLoading(false);
       } else {
         console.error("CustomerGlu is not available");
       }
