@@ -15,7 +15,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
       script.src = "http://192.168.1.4:8080/sdk.js";
       eventEmitter.on('SDK_STATUS_COMPLETED', () => {
         console.log('SDK_STATUS_COMPLETED')
-        setIsLoading(false);
+        // setIsLoading(false);
       });
       script.async = true;
 
@@ -39,7 +39,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
 
       return () => {
         document.body.removeChild(script);
-        // scriptLoadedRef.current = false;
+        scriptLoadedRef.current = false;
       };
     } else {
       // If script is already loaded, initialize the SDK directly
