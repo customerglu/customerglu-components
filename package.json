@@ -1,9 +1,9 @@
 {
   "name": "@customerglu/react-web-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "main": "dist/customerglu-components.cjs.js",
-  "module": "dist/customerglu-components.esm.js",
+  "module": "dist/customerglu-components.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
