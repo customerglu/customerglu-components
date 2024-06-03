@@ -39,6 +39,19 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
     }
   }, [writeKey, userId]);
 
+  // Reload logic
+  useEffect(() => {
+    const reloadKey = 'customerGluReload';
+    const shouldReload = localStorage.getItem(reloadKey);
+
+    if (!shouldReload) {
+      localStorage.setItem(reloadKey, 'true');
+      window.location.reload();
+    } else {
+      localStorage.removeItem(reloadKey);
+    }
+  }, []);
+
   return <div id="embedId"></div>;
 };
 
