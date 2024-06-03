@@ -1,6 +1,6 @@
 {
   "name": "@customerglu/react-web-sdk",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "type": "module",
   "main": "dist/customerglu-components.cjs.js",
   "module": "dist/customerglu-components.es.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:customerglu/customerglu-components.git"
+    "url": "git+ssh://git@github.com/customerglu/customerglu-components.git"
   },
   "dependencies": {
     "@dotlottie/react-player": "^1.6.19",
@@ -36,5 +36,12 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "bugs": {
+    "url": "https://github.com/customerglu/customerglu-components/issues"
+  },
+  "homepage": "https://github.com/customerglu/customerglu-components#readme",
+  "author": "customerglu",
+  "license": "ISC"
 }
