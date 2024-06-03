@@ -1,8 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import Lottie from 'react-lottie';
+import * as animationData from '../assets/U0l8IEynYO.json'
 
-const CustomerGluComponent = ({ writeKey, userId, func }) => {
+const CustomerGluComponent = ({ writeKey, userId }) => {
   const scriptLoadedRef = useRef(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!scriptLoadedRef.current) {
@@ -13,11 +16,10 @@ const CustomerGluComponent = ({ writeKey, userId, func }) => {
       script.onload = () => {
         console.log("Script loaded successfully");
         scriptLoadedRef.current = true;
+        setIsLoading(false); 
+
         if (window.CustomerGlu) {
           new window.CustomerGlu(writeKey, { userId }, {});
-          if (typeof func === "function") {
-            func();
-          }
           console.log("CustomerGlu initialized");
         } else {
           console.error("CustomerGlu is not available");
@@ -46,15 +48,36 @@ const CustomerGluComponent = ({ writeKey, userId, func }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
   return (
-    <></>
+    <>
+      {isLoading ? (
+        <div>
+          <Lottie 
+            options={defaultOptions}
+            height={400}
+            width={400}
+          />
+        </div>
+      ) : (
+        <>
+        </>
+      )}
+    </>
   )
 };
 
 CustomerGluComponent.propTypes = {
   writeKey: PropTypes.string.isRequired,
-  userId: PropTypes.string,
-  func: PropTypes.func.isRequired,
+  userId: PropTypes.string
 };
 
 CustomerGluComponent.defaultProps = {
