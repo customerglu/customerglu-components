@@ -24,7 +24,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
     return () => {
       document.body.removeChild(script);
     };
-  });
+  }, [writeKey, userId]);
 
   return (
     <></>
