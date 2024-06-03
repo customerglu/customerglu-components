@@ -7,7 +7,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
   useEffect(() => {
     if (!scriptLoadedRef.current) {
       const script = document.createElement("script");
-      script.src = "http://127.0.0.1:8080";
+      script.src = "http://192.168.1.4:8080/sdk.js";
       script.async = true;
 
       script.onload = () => {
