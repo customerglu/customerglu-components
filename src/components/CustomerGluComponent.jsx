@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
 const CustomerGluComponent = ({ writeKey, userId }) => {
-  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(true);
   const [scriptError, setScriptError] = useState(false);
 
   useEffect(() => {
