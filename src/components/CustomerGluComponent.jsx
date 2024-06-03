@@ -9,50 +9,51 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
   const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
 
-//   useEffect(() => {
-//     if (!scriptLoadedRef.current) {
-//       const script = document.createElement("script");
-//       script.src = "http://192.168.1.4:8080/sdk.js";
-//       eventEmitter.on('SDK_STATUS_COMPLETED', () => {
-//         console.log('SDK_STATUS_COMPLETED')
-//         // setIsLoading(false);
-//       });
-//       script.async = true;
+  useEffect(() => {
+    if (!scriptLoadedRef.current) {
+      const script = document.createElement("script");
+      script.src = "http://192.168.1.4:8080/sdk.js";
+      eventEmitter.on("SDK_STATUS_COMPLETED", () => {
+        setIsLoading(false);
+      });
+      script.async = true;
 
-//       script.onload = () => {
-//         console.log("Script loaded successfully");
-//         scriptLoadedRef.current = true;
+      script.onload = () => {
+        console.log("Script loaded successfully");
+        scriptLoadedRef.current = true;
 
-//         if (window.CustomerGlu) {
-//           new window.CustomerGlu(writeKey, { userId }, {});
-//           console.log("CustomerGlu initialized");
-//         } else {
-//           console.error("CustomerGlu is not available");
-//         }
-//       };
+        if (window.CustomerGlu) {
+          new window.CustomerGlu(writeKey, { userId }, {});
+          console.log("CustomerGlu initialized");
+        } else {
+          console.error("CustomerGlu is not available");
+        }
+      };
 
-//       script.onerror = (error) => {
-//         console.error("Error loading script:", error);
-//       };
+      script.onerror = (error) => {
+        console.error("Error loading script:", error);
+      };
 
-//       document.body.appendChild(script);
+      document.body.appendChild(script);
 
-//       return () => {
-//         document.body.removeChild(script);
-//         scriptLoadedRef.current = false;
-//       };
-//     } else {
-//       // If script is already loaded, initialize the SDK directly
-//       if (window.CustomerGlu) {
-//         new window.CustomerGlu(writeKey, { userId }, {});
-//         console.log("CustomerGlu initialized");
-//         // setIsLoading(false);
-//       } else {
-//         console.error("CustomerGlu is not available");
-//       }
-//     }
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, []);
+      return () => {
+        document.body.removeChild(script);
+        scriptLoadedRef.current = false;
+      };
+    } else {
+      // If script is already loaded, initialize the SDK directly
+      if (window.CustomerGlu) {
+        new window.CustomerGlu(writeKey, { userId }, {});
+        console.log("CustomerGlu initialized");
+        eventEmitter.on("SDK_STATUS_COMPLETED", () => {
+          setIsLoading(false);
+        });
+      } else {
+        console.error("CustomerGlu is not available");
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const defaultOptions = {
     loop: true,
@@ -66,13 +67,15 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
   return (
     <>
       {isLoading ? (
-        <div style={{
+        <div
+          style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-        }}>
+          }}
+        >
           {console.log("Loading...")}
-          <Lottie options={defaultOptions} width={50} height={50}/>
+          <Lottie options={defaultOptions} width={150} height={150} />
         </div>
       ) : (
         <></>
