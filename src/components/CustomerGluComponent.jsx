@@ -4,7 +4,7 @@ import Lottie from "react-lottie";
 import animationData from "../assets/simpleLoader.json";
 import { EventEmitter } from "events";
 
-const CustomerGluComponent = ({ writeKey, userId }) => {
+const CustomerGluComponent = ({ writeKey, userId, lottieJson }) => {
   const eventEmitter = new EventEmitter();
   const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +12,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
   useEffect(() => {
     if (!scriptLoadedRef.current) {
       const script = document.createElement("script");
-      script.src = "http://192.168.1.4:8080/sdk.js";
+      script.src = "https://assets.customerglu.com/scripts/sdk/v5.0/sdk.js";
       eventEmitter.on("SDK_STATUS_COMPLETED", () => {
         setIsLoading(false);
       });
@@ -58,7 +58,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animationData,
+    animationData: lottieJson,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid meet",
     },
@@ -87,10 +87,12 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
 CustomerGluComponent.propTypes = {
   writeKey: PropTypes.string.isRequired,
   userId: PropTypes.string,
+  lottieJson: PropTypes.object,
 };
 
 CustomerGluComponent.defaultProps = {
   userId: "",
+  lottieJson: animationData
 };
 
 export default CustomerGluComponent;
