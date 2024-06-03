@@ -68,7 +68,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
       {isLoading ? (
         <div>
           {console.log("Loading...")}
-          <Lottie options={defaultOptions} height={400} width={400} />
+          <Lottie options={defaultOptions} width={400} height={50}/>
         </div>
       ) : (
         <></>

@@ -1,6 +1,6 @@
 {
   "name": "@customerglu/react-web-sdk",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "type": "module",
   "main": "dist/customerglu-components.cjs.js",
   "module": "dist/customerglu-components.es.js",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@dotlottie/react-player": "^1.6.19",
     "@lottiefiles/react-lottie-player": "^3.5.4",
+    "events": "^3.3.0",
     "lottie-react": "^2.4.0",
     "lottie-web": "^5.12.2",
     "prop-types": "^15.8.1",
