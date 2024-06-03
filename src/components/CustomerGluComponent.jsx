@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Lottie from 'react-lottie';
-import * as animationData from '../assets/U0l8IEynYO.json'
+import animationData from '../assets/U0l8IEynYO.json'
 
 const CustomerGluComponent = ({ writeKey, userId }) => {
   const scriptLoadedRef = useRef(false);
