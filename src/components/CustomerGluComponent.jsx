@@ -39,7 +39,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
 
       return () => {
         document.body.removeChild(script);
-        scriptLoadedRef.current = false;
+        // scriptLoadedRef.current = false;
       };
     } else {
       // If script is already loaded, initialize the SDK directly
@@ -70,11 +70,9 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            height: 400,
-            width: 150
         }}>
           {console.log("Loading...")}
-          <Lottie options={defaultOptions} width={60} height={10}/>
+          <Lottie options={defaultOptions} width={200} height={50}/>
         </div>
       ) : (
         <></>
