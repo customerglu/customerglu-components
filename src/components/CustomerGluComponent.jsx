@@ -59,7 +59,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
+      preserveAspectRatio: "xMidYMid meet",
     },
   };
 
@@ -72,7 +72,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
             justifyContent: "center",
         }}>
           {console.log("Loading...")}
-          <Lottie options={defaultOptions} width={200} height={50}/>
+          <Lottie options={defaultOptions}/>
         </div>
       ) : (
         <></>
