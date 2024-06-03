@@ -16,7 +16,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
 
     if (!existingScript) {
       const script = document.createElement("script");
-      script.src = "https://assets.customerglu.com/scripts/sdk/v5.0/sdk.js";
+      script.src = "http://127.0.0.1:8080/sdk.js";
       script.async = true;
 
       script.onload = () => {
