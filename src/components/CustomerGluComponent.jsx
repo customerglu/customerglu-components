@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import Lottie from "react-lottie";
-import animationData from "../assets/defaultNativeBannerLoader.json";
+import animationData from "../assets/simpleLoader.json";
 import { EventEmitter } from "events";
 
 const CustomerGluComponent = ({ writeKey, userId }) => {
@@ -66,9 +66,15 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
   return (
     <>
       {isLoading ? (
-        <div>
+        <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: 400,
+            width: 150
+        }}>
           {console.log("Loading...")}
-          <Lottie options={defaultOptions} width={400} height={50}/>
+          <Lottie options={defaultOptions} width={60} height={10}/>
         </div>
       ) : (
         <></>
