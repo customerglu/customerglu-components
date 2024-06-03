@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import Lottie from 'react-lottie';
-import animationData from '../assets/U0l8IEynYO.json'
+import { Player } from '@lottiefiles/react-lottie-player'; // Import Player from lottie-react
 
 const CustomerGluComponent = ({ writeKey, userId }) => {
   const scriptLoadedRef = useRef(false);
@@ -48,24 +47,16 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
-  };
-
   return (
     <>
       {isLoading ? (
         <div>
             {console.log("Loading...")}
-          <Lottie 
-            options={defaultOptions}
-            height={400}
-            width={400}
+          <Player
+            autoplay
+            loop
+            src="../assets/NativeBannerloader.json" // Replace with the correct path to your .lottie file
+            style={{ height: '400px', width: '400px' }}
           />
         </div>
       ) : (
