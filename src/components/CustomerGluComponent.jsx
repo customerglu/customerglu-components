@@ -72,7 +72,7 @@ const CustomerGluComponent = ({ writeKey, userId }) => {
             justifyContent: "center",
         }}>
           {console.log("Loading...")}
-          <Lottie options={defaultOptions}/>
+          <Lottie options={defaultOptions} width={50} height={50}/>
         </div>
       ) : (
         <></>
