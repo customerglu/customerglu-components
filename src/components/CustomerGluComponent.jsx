@@ -54,7 +54,7 @@ const CustomerGluComponent = ({ writeKey, userId, func }) => {
 CustomerGluComponent.propTypes = {
   writeKey: PropTypes.string.isRequired,
   userId: PropTypes.string,
-  func: PropTypes.function.isRequired,
+  func: PropTypes.func.isRequired,
 };
 
 CustomerGluComponent.defaultProps = {
