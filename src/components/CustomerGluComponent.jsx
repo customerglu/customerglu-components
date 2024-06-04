@@ -67,16 +67,7 @@ const CustomerGluComponent = ({ writeKey, userId, lottieJson }) => {
   return (
     <>
       {isLoading ? (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {console.log("Loading...")}
-          <Lottie options={defaultOptions} width={150} height={150} />
-        </div>
+        <Lottie options={defaultOptions} width={150} height={150} />
       ) : (
         <></>
       )}
@@ -92,7 +83,7 @@ CustomerGluComponent.propTypes = {
 
 CustomerGluComponent.defaultProps = {
   userId: "",
-  lottieJson: animationData
+  lottieJson: animationData,
 };
 
 export default CustomerGluComponent;
