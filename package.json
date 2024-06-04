@@ -1,6 +1,6 @@
 {
   "name": "@customerglu/react-web-sdk",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "type": "module",
   "main": "dist/customerglu-components.cjs.js",
   "module": "dist/customerglu-components.es.js",
@@ -43,5 +43,8 @@
   },
   "homepage": "https://github.com/customerglu/customerglu-components#readme",
   "author": "customerglu",
-  "license": "ISC"
+  "license": "MIT",
+  "keywords": [
+    "gamification"
+  ]
 }
