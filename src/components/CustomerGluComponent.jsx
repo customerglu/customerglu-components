@@ -12,7 +12,7 @@ const CustomerGluComponent = ({ writeKey, userId, lottieJson }) => {
   useEffect(() => {
     if (!scriptLoadedRef.current) {
       const script = document.createElement("script");
-      script.src = "https://assets.customerglu.com/scripts/sdk/v5.0/sdk.js";
+      script.src = "https://assets.customerglu.com/scripts/sdk/v5.1/sdk.js";
       eventEmitter.on("SDK_STATUS_COMPLETED", () => {
         setIsLoading(false);
       });
