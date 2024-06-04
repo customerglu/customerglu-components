@@ -25,9 +25,8 @@ npm install @customerglu/react-web-sdk
 Here’s a basic example of how to use the component in your project:
 
 ```jsx
-import "./styles.css";
 import { CustomerGluComponent } from "@customerglu/react-web-sdk";
-import animationData from "../path/to/lottie.json"
+import animationData from "../path/to/lottie.json";
 
 export default function App() {
   return (
@@ -49,7 +48,7 @@ export default function App() {
         <CustomerGluComponent
           writeKey="<YOUR-WRITE-KEY>"
           userId="<YOUR-USER-ID>"
-          lottieJson=animationData
+          lottieJson={animationData}
         />
       </div>
     </div>
