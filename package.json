@@ -1,6 +1,6 @@
 {
   "name": "@customerglu/react-web-sdk",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "type": "module",
   "main": "dist/customerglu-components.cjs.js",
   "module": "dist/customerglu-components.es.js",
@@ -32,7 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
   },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "description": "This React Component allows developers to integrate with CustomerGlu Gamification Platform easily",
   "bugs": {
     "url": "https://github.com/customerglu/customerglu-components/issues"
   },
