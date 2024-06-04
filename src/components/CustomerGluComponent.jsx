@@ -67,7 +67,7 @@ const CustomerGluComponent = ({ writeKey, userId, lottieJson }) => {
   return (
     <>
       {isLoading ? (
-        <Lottie options={defaultOptions} />
+        <Lottie options={defaultOptions} height={"50%"} width={"80%"} />
       ) : (
         <></>
       )}
