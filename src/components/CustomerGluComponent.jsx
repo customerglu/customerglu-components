@@ -4,7 +4,7 @@ import Lottie from "react-lottie";
 import animationData from "../assets/simpleLoader.json";
 import { EventEmitter } from "events";
 
-const CustomerGluComponent = ({ writeKey, userId, lottieJson }) => {
+const CustomerGluComponent = ({ writeKey, userId, lottieJson, gluToken }) => {
   const eventEmitter = new EventEmitter();
   const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +43,8 @@ const CustomerGluComponent = ({ writeKey, userId, lottieJson }) => {
     } else {
       // If script is already loaded, initialize the SDK directly
       if (window.CustomerGlu) {
-        new window.CustomerGlu(writeKey, { userId }, {});
+        if(writeKey) new window.CustomerGlu(writeKey, { userId }, {});
+        else new window.CustomerGlu(gluToken? undefined : writeKey, { userId, gluToken }, {})
         console.log("CustomerGlu initialized");
         eventEmitter.on("SDK_STATUS_COMPLETED", () => {
           setIsLoading(false);
@@ -79,6 +80,7 @@ CustomerGluComponent.propTypes = {
   writeKey: PropTypes.string.isRequired,
   userId: PropTypes.string,
   lottieJson: PropTypes.object,
+  gluToken: PropTypes.string
 };
 
 CustomerGluComponent.defaultProps = {
