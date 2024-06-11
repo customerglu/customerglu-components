@@ -41,8 +41,13 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
     } else {
       // If script is already loaded, initialize the SDK directly
       if (window.CustomerGlu) {
-        if(writeKey) new window.CustomerGlu(writeKey, { userId }, {});
-        else new window.CustomerGlu(gluToken? undefined : writeKey, { userId, gluToken }, {})
+        if (writeKey) new window.CustomerGlu(writeKey, { userId }, {});
+        else
+          new window.CustomerGlu(
+            gluToken ? undefined : writeKey,
+            { userId, gluToken },
+            {}
+          );
         console.log("CustomerGlu initialized");
         eventEmitter.on("SDK_STATUS_COMPLETED", () => {
           setIsLoading(false);
@@ -54,15 +59,7 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <>
-      {isLoading ? (
-        {children}
-      ) : (
-        <></>
-      )}
-    </>
-  );
+  return <>{isLoading ? { children } : <></>}</>;
 };
 
 CustomerGluComponent.propTypes = {
