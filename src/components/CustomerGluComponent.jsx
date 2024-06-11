@@ -4,7 +4,7 @@ import Lottie from "react-lottie";
 import animationData from "../assets/simpleLoader.json";
 import { EventEmitter } from "events";
 
-const CustomerGluComponent = ({ writeKey, userId, lottieJson, gluToken }) => {
+const CustomerGluComponent = ({ writeKey, userId, lottieJson, userToken }) => {
   const eventEmitter = new EventEmitter();
   const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +12,7 @@ const CustomerGluComponent = ({ writeKey, userId, lottieJson, gluToken }) => {
   useEffect(() => {
     if (!scriptLoadedRef.current) {
       const script = document.createElement("script");
-      script.src = "https://assets.customerglu.com/scripts/sdk/v5.1/sdk.js";
+      script.src = "http://127.0.0.1:8080/sdk.js";
       eventEmitter.on("SDK_STATUS_COMPLETED", () => {
         setIsLoading(false);
       });
@@ -23,7 +23,7 @@ const CustomerGluComponent = ({ writeKey, userId, lottieJson, gluToken }) => {
         scriptLoadedRef.current = true;
 
         if (window.CustomerGlu) {
-          new window.CustomerGlu(writeKey, { userId }, {});
+          new window.CustomerGlu(writeKey, { userId, userToken }, {});
           console.log("CustomerGlu initialized");
         } else {
           console.error("CustomerGlu is not available");
@@ -43,8 +43,7 @@ const CustomerGluComponent = ({ writeKey, userId, lottieJson, gluToken }) => {
     } else {
       // If script is already loaded, initialize the SDK directly
       if (window.CustomerGlu) {
-        if(writeKey) new window.CustomerGlu(writeKey, { userId }, {});
-        else new window.CustomerGlu(gluToken? undefined : writeKey, { userId, gluToken }, {})
+        new window.CustomerGlu(writeKey, { userId, userToken }, {})
         console.log("CustomerGlu initialized");
         eventEmitter.on("SDK_STATUS_COMPLETED", () => {
           setIsLoading(false);
@@ -77,7 +76,7 @@ const CustomerGluComponent = ({ writeKey, userId, lottieJson, gluToken }) => {
 };
 
 CustomerGluComponent.propTypes = {
-  writeKey: PropTypes.string.isRequired,
+  writeKey: PropTypes.string,
   userId: PropTypes.string,
   lottieJson: PropTypes.object,
   gluToken: PropTypes.string
