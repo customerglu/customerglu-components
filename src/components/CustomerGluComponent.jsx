@@ -17,7 +17,7 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
 
     if (!scriptLoadedRef.current) {
       const script = document.createElement("script");
-      script.src = "https://assets.customerglu.com/scripts/sdk/v5.1/sdk.js";
+      script.src = "https://assets.customerglu.com/scripts/sdk/v5.2/sdk.js";
       script.async = true;
 
       script.onload = () => {
