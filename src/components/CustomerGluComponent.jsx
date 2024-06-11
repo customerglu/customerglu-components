@@ -9,12 +9,15 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
 
   useEffect(() => {
     const writeKey = "";
+    const handleSDKStatusCompleted = () => {
+      setIsLoading(false);
+    };
+
+    eventEmitter.on("SDK_STATUS_COMPLETED", handleSDKStatusCompleted);
+
     if (!scriptLoadedRef.current) {
       const script = document.createElement("script");
       script.src = "https://assets.customerglu.com/scripts/sdk/v5.1/sdk.js";
-      eventEmitter.on("SDK_STATUS_COMPLETED", () => {
-        setIsLoading(false);
-      });
       script.async = true;
 
       script.onload = () => {
@@ -37,21 +40,12 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
       return () => {
         document.body.removeChild(script);
         scriptLoadedRef.current = false;
+        eventEmitter.off("SDK_STATUS_COMPLETED", handleSDKStatusCompleted);
       };
     } else {
-      // If script is already loaded, initialize the SDK directly
       if (window.CustomerGlu) {
-        if (writeKey) new window.CustomerGlu(writeKey, { userId }, {});
-        else
-          new window.CustomerGlu(
-            gluToken ? undefined : writeKey,
-            { userId, gluToken },
-            {}
-          );
+        new window.CustomerGlu(writeKey || undefined, { userId, gluToken }, {});
         console.log("CustomerGlu initialized");
-        eventEmitter.on("SDK_STATUS_COMPLETED", () => {
-          setIsLoading(false);
-        });
       } else {
         console.error("CustomerGlu is not available");
       }
@@ -59,7 +53,7 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return isLoading ? { children } : <></>;
+  return isLoading ? <></> : <>{children}</>;
 };
 
 CustomerGluComponent.propTypes = {
