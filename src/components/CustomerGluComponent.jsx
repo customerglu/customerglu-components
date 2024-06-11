@@ -24,7 +24,8 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
         scriptLoadedRef.current = true;
 
         if (window.CustomerGlu) {
-          new window.CustomerGlu(writeKey, { userId, gluToken }, {});
+          const userToken = gluToken;
+          new window.CustomerGlu(writeKey, { userId, userToken }, {});
           console.log("CustomerGlu initialized");
         } else {
           console.error("CustomerGlu is not available");
@@ -53,13 +54,13 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return isLoading ? <></> : <>{children}</>;
+  return isLoading ? <>{children}</> : <></>;
 };
 
 CustomerGluComponent.propTypes = {
   userId: PropTypes.string,
   gluToken: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 CustomerGluComponent.defaultProps = {
