@@ -59,7 +59,7 @@ const CustomerGluComponent = ({ userId, gluToken, children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <>{isLoading ? { children } : <></>}</>;
+  return isLoading ? { children } : <></>;
 };
 
 CustomerGluComponent.propTypes = {
