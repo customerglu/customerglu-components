@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { EventEmitter } from "events";
 
-const CustomerGluComponent = ({ userId, gluToken, children }) => {
+const CustomerGluComponent = ({ userId = "", gluToken, children }) => {
   const eventEmitter = new EventEmitter();
   const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -61,10 +61,6 @@ CustomerGluComponent.propTypes = {
   userId: PropTypes.string,
   gluToken: PropTypes.string.isRequired,
   children: PropTypes.node,
-};
-
-CustomerGluComponent.defaultProps = {
-  userId: "",
 };
 
 export default CustomerGluComponent;
