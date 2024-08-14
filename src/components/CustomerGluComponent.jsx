@@ -2,7 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { EventEmitter } from "events";
 
-const CustomerGluComponent = ({ userId = "", gluToken, children }) => {
+const CustomerGluComponent = ({
+  userId = "",
+  gluToken,
+  children,
+  region = "in",
+}) => {
   const eventEmitter = new EventEmitter();
   const scriptLoadedRef = useRef(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +22,11 @@ const CustomerGluComponent = ({ userId = "", gluToken, children }) => {
 
     if (!scriptLoadedRef.current) {
       const script = document.createElement("script");
-      script.src = "https://assets.customerglu.com/scripts/sdk/v5.5/sdk.js";
+      region === "us"
+        ? (script.src =
+            "https://assets.customerglu.com/scripts/us/sdk/v5.5/sdk.js")
+        : (script.src =
+            "https://assets.customerglu.com/scripts/sdk/v5.5/sdk.js");
       script.async = true;
 
       script.onload = () => {
@@ -61,6 +70,7 @@ CustomerGluComponent.propTypes = {
   userId: PropTypes.string,
   gluToken: PropTypes.string.isRequired,
   children: PropTypes.node,
+  region: PropTypes.oneOf(["in", "us"]),
 };
 
 export default CustomerGluComponent;
