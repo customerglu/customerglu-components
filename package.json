@@ -1,6 +1,6 @@
 {
   "name": "@customerglu/react-web-sdk",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "type": "module",
   "main": "dist/customerglu-components.cjs.js",
   "module": "dist/customerglu-components.es.js",
