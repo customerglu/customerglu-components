@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { initializeCustomerGlu } from './CustomerGluSingleton';
-export const CustomerGluComponent = ({
+const CustomerGluComponent = ({
   userId = '',
   gluToken,
   children,
@@ -27,6 +27,7 @@ export const CustomerGluComponent = ({
   }
   return isLoading ? <div>Loading CustomerGlu...</div> : children;
 };
+
 CustomerGluComponent.propTypes = {
   userId: PropTypes.string,
   gluToken: PropTypes.string.isRequired,
@@ -34,3 +35,5 @@ CustomerGluComponent.propTypes = {
   region: PropTypes.oneOf(['in', 'us']),
   writeKey: PropTypes.string,
 };
+
+export default CustomerGluComponent;
