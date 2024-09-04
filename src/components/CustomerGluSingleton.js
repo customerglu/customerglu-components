@@ -1,0 +1,69 @@
+let instance = null;
+let isInitialized = false;
+let isLoading = false;
+let initializationPromise = null;
+
+const loadScript = (src) => {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) {
+      resolve();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.body.appendChild(script);
+  });
+};
+
+export const initializeCustomerGlu = async (writeKey, userId, userToken, region = 'in') => {
+  if (isInitialized) {
+    return instance;
+  }
+
+  if (isLoading) {
+    return initializationPromise;
+  }
+
+  isLoading = true;
+  initializationPromise = (async () => {
+    try {
+      const scriptSrc = region === 'us'
+        ? 'https://assets.customerglu.com/scripts/us/sdk/v5.7.1/sdk.js'
+        : 'https://assets.customerglu.com/scripts/sdk/v5.5/sdk.js';
+      
+      await loadScript(scriptSrc);
+
+      if (!window.CustomerGlu) {
+        throw new Error('CustomerGlu failed to load');
+      }
+
+      instance = new window.CustomerGlu(writeKey, { userId, userToken }, {});
+
+      
+      
+      isInitialized = true;
+      console.log('CustomerGlu initialized');
+      return instance;
+    } catch (error) {
+      console.error('Error initializing CustomerGlu:', error);
+      throw error;
+    } finally {
+      isLoading = false;
+    }
+  })();
+
+  return initializationPromise;
+};
+
+
+
+
+export const getCustomerGluInstance = () => {
+  if (!isInitialized) {
+    throw new Error('CustomerGlu is not initialized. Call initializeCustomerGlu first.');
+  }
+  return instance;
+};

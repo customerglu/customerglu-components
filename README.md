@@ -57,6 +57,8 @@ export default function App() {
 }
 ```
 
+> Note: `id` of the div is configured from the CustomerGlu dashboard while creating the nudge for the particular campaign.
+
 ### Props
 
 | Prop Name  | Type   | Default | Description                                                                                                                                                                                 |
@@ -79,6 +81,12 @@ git clone https://github.com/customerglu/customerglu-components.git
 cd customerglu-components
 npm install
 ```
+
+## Changelog
+
+#### Version 1.5.0
+
+- Improved resource management for better performance and efficiency.
 
 ## License
 
