@@ -59,7 +59,12 @@ export const initializeCustomerGlu = async (writeKey, userId, userToken, region 
 };
 
 
-
+export const acceptChallange = async (userToken,campaignId) =>
+  {
+    
+    CGHelper.getInstance().acceptChallange(userToken, campaignId);
+  
+ };
 
 export const getCustomerGluInstance = () => {
   if (!isInitialized) {

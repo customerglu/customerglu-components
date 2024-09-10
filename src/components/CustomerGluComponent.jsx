@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { initializeCustomerGlu } from './CustomerGluSingleton';
+import { acceptChallange } from './CustomerGluSingleton';
+
 const CustomerGluComponent = ({
   userId = '',
   gluToken,
@@ -27,6 +29,10 @@ const CustomerGluComponent = ({
   }
   return isLoading ? <div>Loading CustomerGlu...</div> : children;
 };
+
+export const gluEnableActivityProcessing = (gluToken, campaignId) => {
+    acceptChallange(gluToken,campaignId)
+}
 
 CustomerGluComponent.propTypes = {
   userId: PropTypes.string,
