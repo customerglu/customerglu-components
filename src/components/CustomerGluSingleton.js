@@ -20,10 +20,15 @@ const loadScript = (src) => {
 
 export const initializeCustomerGlu = async (writeKey, userId, userToken, region = 'in') => {
   if (isInitialized) {
+    console.log("CustomerGlu instance already created");
+    let reinitialize = true
+    instance.register(writeKey, { userId, userToken, reinitialize }, {});
     return instance;
   }
 
   if (isLoading) {
+    console.log("CustomerGlu instance isLoading");
+
     return initializationPromise;
   }
 
@@ -56,19 +61,4 @@ export const initializeCustomerGlu = async (writeKey, userId, userToken, region 
   })();
 
   return initializationPromise;
-};
-
-
-export const acceptChallange = async (userToken,campaignId) =>
-  {
-    
-    CGHelper.getInstance().acceptChallange(userToken, campaignId);
-  
- };
-
-export const getCustomerGluInstance = () => {
-  if (!isInitialized) {
-    throw new Error('CustomerGlu is not initialized. Call initializeCustomerGlu first.');
-  }
-  return instance;
 };

@@ -104,7 +104,7 @@ npm install
 
 #### Version 1.5.1
 
-- Added `gluEnableActivityProcessing` method for enabling the activity completion.
+- Added fix for Singleton instance 
 
 #### Version 1.5.0
 
