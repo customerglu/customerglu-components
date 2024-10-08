@@ -102,6 +102,10 @@ npm install
 
 ## Changelog
 
+#### Version 1.5.2
+
+- Remove addition checks 
+
 #### Version 1.5.1
 
 - Added fix for Singleton instance 

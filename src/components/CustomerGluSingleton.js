@@ -21,8 +21,7 @@ const loadScript = (src) => {
 export const initializeCustomerGlu = async (writeKey, userId, userToken, region = 'in') => {
   if (isInitialized) {
     console.log("CustomerGlu instance already created");
-    let reinitialize = true
-    instance.register(writeKey, { userId, userToken, reinitialize }, {});
+    instance.register(writeKey, { userId, userToken }, {});
     return instance;
   }
 
