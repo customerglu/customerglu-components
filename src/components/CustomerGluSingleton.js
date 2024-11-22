@@ -36,7 +36,9 @@ export const initializeCustomerGlu = async (writeKey, userId, userToken, region 
     try {
       const scriptSrc = region === 'us'
         ? 'https://assets.customerglu.com/scripts/us/sdk/v5.7.1/sdk.js'
-        : 'https://assets.customerglu.com/scripts/sdk/v5.5/sdk.js';
+        :region === 'me'
+        ? 'https://assets-me.customerglu.com/scripts/sdk/v0.0.1/sdk.js'
+        :'https://assets.customerglu.com/scripts/sdk/v5.5/sdk.js';
       
       await loadScript(scriptSrc);
 
@@ -49,7 +51,7 @@ export const initializeCustomerGlu = async (writeKey, userId, userToken, region 
       
       
       isInitialized = true;
-      console.log('CustomerGlu initialized: React Web SDK v1.5.4');
+      console.log('CustomerGlu initialized: React Web SDK v1.5.5');
       return instance;
     } catch (error) {
       console.error('Error initializing CustomerGlu:', error);

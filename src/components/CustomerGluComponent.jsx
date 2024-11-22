@@ -34,7 +34,7 @@ CustomerGluComponent.propTypes = {
   userId: PropTypes.string,
   gluToken: PropTypes.string.isRequired,
   children: PropTypes.node,
-  region: PropTypes.oneOf(['in', 'us']),
+  region: PropTypes.oneOf(['in', 'us','me']),
   writeKey: PropTypes.string,
 };
 
