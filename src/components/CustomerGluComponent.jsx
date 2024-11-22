@@ -14,7 +14,7 @@ const CustomerGluComponent = ({
   useEffect(() => {
     const initialize = async () => {
       try {
-        console.log("initializeCustomerGlu");
+        console.log("initializeCustomerGlu React Component");
         await initializeCustomerGlu(writeKey, userId, gluToken, region);
         setIsLoading(false);
       } catch (err) {

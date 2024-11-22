@@ -49,7 +49,7 @@ export const initializeCustomerGlu = async (writeKey, userId, userToken, region 
       
       
       isInitialized = true;
-      console.log('CustomerGlu initialized');
+      console.log('CustomerGlu initialized: React Web SDK v1.5.4');
       return instance;
     } catch (error) {
       console.error('Error initializing CustomerGlu:', error);
