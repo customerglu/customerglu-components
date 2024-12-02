@@ -35,7 +35,7 @@ export const initializeCustomerGlu = async (writeKey, userId, userToken, region 
   initializationPromise = (async () => {
     try {
       const scriptSrc = region === 'us'
-        ? 'https://assets.customerglu.com/scripts/us/sdk/v5.7.1/sdk.js'
+        ? 'https://assets-us.customerglu.com/scripts/sdk/v6.0/sdk.js'
         :region === 'me'
         ? 'https://assets-me.customerglu.com/scripts/sdk/v0.0.1/sdk.js'
         :'https://assets.customerglu.com/scripts/sdk/v5.5/sdk.js';
