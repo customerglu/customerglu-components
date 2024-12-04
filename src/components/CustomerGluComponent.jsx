@@ -27,7 +27,7 @@ const CustomerGluComponent = ({
   if (error) {
     return <div>Error initializing CustomerGlu: {error.message}</div>;
   }
-  return isLoading ? <div>Loading CustomerGlu...</div> : children;
+  return isLoading ? <></> : children;
 };
 
 CustomerGluComponent.propTypes = {
