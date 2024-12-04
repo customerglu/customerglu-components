@@ -20,13 +20,13 @@ const loadScript = (src) => {
 
 export const initializeCustomerGlu = async (writeKey, userId, userToken, region = 'in') => {
   if (isInitialized) {
-    console.log("CustomerGlu instance already created");
+    // console.log("CustomerGlu instance already created");
     instance.register(writeKey, { userId, userToken }, {});
     return instance;
   }
 
   if (isLoading) {
-    console.log("CustomerGlu instance isLoading");
+    // console.log("CustomerGlu instance isLoading");
 
     return initializationPromise;
   }
@@ -51,7 +51,7 @@ export const initializeCustomerGlu = async (writeKey, userId, userToken, region 
       
       
       isInitialized = true;
-      console.log('CustomerGlu initialized: React Web SDK v1.5.5');
+      // console.log('CustomerGlu initialized: React Web SDK v1.5.5');
       return instance;
     } catch (error) {
       console.error('Error initializing CustomerGlu:', error);

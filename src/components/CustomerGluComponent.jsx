@@ -25,7 +25,7 @@ const CustomerGluComponent = ({
     initialize();
   }, [userId, gluToken, region, writeKey]);
   if (error) {
-    return <div>Error initializing CustomerGlu: {error.message}</div>;
+    return <></>;
   }
   return isLoading ? <></> : children;
 };
